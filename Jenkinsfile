@@ -1,6 +1,5 @@
 pipeline {
      agent any
-     def dockerImage
      stages {
          stage('Build') {
               steps {
@@ -14,14 +13,15 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {
-                  dockerImage = docker.build("alishouman/udacity-capstone")
+                  sh 'docker build -t udacity-capstone .'
               }
          }
 
          stage('Push Docker Image') {
               steps {
                   withDockerRegistry([url: "", credentialsId: "docker-id"]) {
-                    dockerImage.push()
+                      sh "docker tag udacity-capstone alishouman/udacity-capstone"
+                      sh 'docker push alishouman/udacity-capstone'
                   }
               }
          }
