@@ -20,7 +20,7 @@ pipeline {
               steps {
                   withDockerRegistry([url: "", credentialsId: "docker-id"]) {
                       sh "sudo docker tag udacity-capstone alishouman/udacity-capstone"
-                      sh 'sudo docker push alishouman/udacity-capstone'
+                      sh 'sudo docker push alishouman/udacity-capstone:latest'
                   }
               }
          }
