@@ -31,12 +31,10 @@ pipeline {
                   withAWS(credentials: 'aws-id', region: 'us-east-2') {
                       sh "aws eks --region us-east-2 update-kubeconfig --name cluster"
                       sh "kubectl config use-context arn:aws:eks:us-east-2:519248592653:cluster/cluster"
-                      sh "kubectl set image deployments/udacity-capstone udacity-capstone=alishouman/udacity-capstone:latest"
+                      sh "kubectl create deployment keras-app --image=stamatelou/keras-app"
                       sh "kubectl apply -f deployment/deployment.yml"
-                      sh "kubectl get nodes"
-                      sh "kubectl get deployment"
-                      sh "kubectl get pod -o wide"
-                      sh "kubectl get service/udacity-capstone"
+                      sh "kubectl apply -f deployment/load-balancer.yml"
+                      sh "kubectl set image deployments/udacity-capstone udacity-capstone=alishouman/udacity-capstone:latest"
                   }
               }
         }
