@@ -13,21 +13,21 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {
-                  sh 'docker build -t cloud-devops-nanodegree-capstone .'
+                  sh 'sudo docker build -t cloud-devops-nanodegree-capstone .'
               }
          }
          stage('Push Docker Image') {
               steps {
-                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
-                      sh "docker tag cloud-devops-nanodegree-capstone shoumaw/cloud-devops-nanodegree-capstone"
-                      sh 'docker push shoumaw/cloud-devops-nanodegree-capstone'
+                  withDockerRegistry([url: "", credentialsId: "docker-id"]) {
+                      sh "sudo docker tag cloud-devops-nanodegree-capstone shoumaw/cloud-devops-nanodegree-capstone"
+                      sh 'sudo docker push shoumaw/cloud-devops-nanodegree-capstone'
                   }
               }
          }
          stage('Deploying') {
               steps{
                   echo 'Deploying to AWS...'
-                  withAWS(credentials: 'aws', region: 'us-east-2') {
+                  withAWS(credentials: 'aws-id', region: 'us-east-2') {
                       sh "aws eks --region us-east-2 update-kubeconfig --name cluster"
                       sh "kubectl config use-context arn:aws:eks:us-east-2:519248592653:cluster/cluster"
                       sh "kubectl set image deployments/cloud-devops-nanodegree-capstone cloud-devops-nanodegree-capstone=shoumaw/cloud-devops-nanodegree-capstone:latest"
