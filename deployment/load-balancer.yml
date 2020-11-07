@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: Cloud-Devops-Nanodegree-Capstone
+  labels:
+    app: Cloud-Devops-Nanodegree-Capstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: Cloud-Devops-Nanodegree-Capstone
+  ports:
+    - port: 80
+      targetPort: 80
