@@ -35,6 +35,11 @@ pipeline {
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl apply -f deployment/load-balancer.yml"
                       sh "kubectl set image deployments/udacity-capstone udacity-capstone=alishouman/udacity-capstone:latest"
+                      sh "kubectl get nodes"
+                      sh "kubectl get deployment"
+                      sh "kubectl get pod -o wide"
+                      sh "kubectl get service/udacity-capstone"
+
                   }
               }
         }
