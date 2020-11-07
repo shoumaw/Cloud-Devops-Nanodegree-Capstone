@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Cloud-Devops-Nanodegree-Capstone
+  name: udacity-capstone
   labels:
-    app: Cloud-Devops-Nanodegree-Capstone
+    app: udacity-capstone
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: Cloud-Devops-Nanodegree-Capstone
+      app: udacity-capstone
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: Cloud-Devops-Nanodegree-Capstone
+        app: udacity-capstone
     spec:
       containers:
-        - image: shoumaw/Cloud-Devops-Nanodegree-Capstone
+        - image: alishouman/udacity-capstone
           imagePullPolicy: Always
-          name: Cloud-Devops-Nanodegree-Capstone
+          name: udacity-capstone
           ports:
             - containerPort: 80
 
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: Cloud-Devops-Nanodegree-Capstone
+  name: udacity-capstone
   labels:
-    app: Cloud-Devops-Nanodegree-Capstone
+    app: udacity-capstone
 spec:
   type: LoadBalancer
   selector:
-    app: Cloud-Devops-Nanodegree-Capstone
+    app: udacity-capstone
   ports:
     - port: 80
       targetPort: 80
