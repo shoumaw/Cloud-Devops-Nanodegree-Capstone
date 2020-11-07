@@ -19,8 +19,8 @@ pipeline {
          stage('Push Docker Image') {
               steps {
                   withDockerRegistry([url: "", credentialsId: "docker-id"]) {
-                      sh "sudo docker tag cloud-devops-nanodegree-capstone shoumaw/cloud-devops-nanodegree-capstone"
-                      sh 'sudo docker push shoumaw/cloud-devops-nanodegree-capstone'
+                      sh "sudo docker tag cloud-devops-nanodegree-capstone alishouman/cloud-devops-nanodegree-capstone"
+                      sh 'sudo docker push alishouman/cloud-devops-nanodegree-capstone'
                   }
               }
          }
@@ -30,7 +30,7 @@ pipeline {
                   withAWS(credentials: 'aws-id', region: 'us-east-2') {
                       sh "aws eks --region us-east-2 update-kubeconfig --name cluster"
                       sh "kubectl config use-context arn:aws:eks:us-east-2:519248592653:cluster/cluster"
-                      sh "kubectl set image deployments/cloud-devops-nanodegree-capstone cloud-devops-nanodegree-capstone=shoumaw/cloud-devops-nanodegree-capstone:latest"
+                      sh "kubectl set image deployments/cloud-devops-nanodegree-capstone cloud-devops-nanodegree-capstone=alishouman/cloud-devops-nanodegree-capstone:latest"
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl get nodes"
                       sh "kubectl get deployment"
