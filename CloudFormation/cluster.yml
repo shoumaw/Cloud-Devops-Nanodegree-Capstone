@@ -1,7 +1,6 @@
 Description: >
 Ali Shouman - Udacity Cloud DevOps Capstone
 
-
 Parameters:
   EnvironmentName:
     Description: An Environment name that will be prefixed to resources

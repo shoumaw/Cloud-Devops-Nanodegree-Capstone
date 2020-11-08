@@ -1,6 +1,5 @@
 Description: >
-  Capstone project for Cloud DevOps Engineering Nanodegree
-  Author - Sabbir Hossain
+  Ali Shouman - Udacity Cloud DevOps Capstone
 
 Parameters:
   EnvironmentName:
